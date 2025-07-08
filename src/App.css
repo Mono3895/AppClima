@@ -1,0 +1,311 @@
+/* src/App.css */
+
+/* Variables CSS para colores */
+:root {
+  --background-color: #282c34; /* Fondo oscuro */
+  --card-background: #3a3f47; /* Fondo de tarjeta más claro que el fondo principal */
+  --text-color-light: #f0f0f0; /* Texto claro */
+  --text-color-dark: #a0a8b3; /* Texto secundario o menos prominente */
+  --primary-color: #61dafb; /* Color de acento de React */
+  --button-background: #007bff;
+  --button-hover: #0056b3;
+  --error-color: #ff6b6b;
+  --border-color: #4a4f58;
+}
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--background-color);
+  color: var(--text-color-light);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; /* Alinea al inicio para que el header esté arriba */
+  padding: 20px;
+  box-sizing: border-box; /* Incluye padding en el tamaño total */
+}
+
+.dashboard-container {
+  width: 100%;
+  max-width: 1200px; /* Ancho máximo para el dashboard */
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Espacio entre header y main */
+  background-color: var(--background-color);
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); /* Sombra más pronunciada */
+  overflow: hidden; /* Para contener bordes redondeados */
+}
+
+/* --- Header del Dashboard --- */
+.dashboard-header {
+  background-color: var(--card-background);
+  padding: 25px 30px;
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.dashboard-header h1 {
+  margin: 0;
+  color: var(--primary-color);
+  font-size: 2.5em;
+  font-weight: 600;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.search-form {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+  max-width: 500px; /* Ancho máximo del formulario */
+}
+
+.city-input {
+  flex-grow: 1;
+  padding: 12px 18px;
+  border: 1px solid var(--border-color);
+  border-radius: 25px;
+  background-color: #4a4f58;
+  color: var(--text-color-light);
+  font-size: 1.1em;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  outline: none;
+}
+
+.city-input::placeholder {
+  color: var(--text-color-dark);
+}
+
+.city-input:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(97, 218, 251, 0.3);
+}
+
+.search-button {
+  padding: 12px 25px;
+  background-color: var(--button-background);
+  color: white;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 1.1em;
+  font-weight: 500;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.search-button:hover {
+  background-color: var(--button-hover);
+  transform: translateY(-2px);
+}
+
+.search-button:disabled {
+  background-color: #555;
+  cursor: not-allowed;
+  opacity: 0.7;
+  transform: none;
+}
+
+/* --- Contenido Principal del Dashboard --- */
+.dashboard-main {
+  padding: 20px 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+}
+
+.error-message {
+  color: var(--error-color);
+  background-color: rgba(255, 107, 107, 0.1);
+  padding: 15px 20px;
+  border-radius: 8px;
+  border: 1px solid var(--error-color);
+  font-size: 1.1em;
+  text-align: center;
+  width: 100%;
+  max-width: 600px;
+}
+
+.initial-message {
+  color: var(--text-color-dark);
+  font-size: 1.2em;
+  margin-top: 50px;
+}
+
+.weather-dashboard-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Columnas responsivas */
+  gap: 25px;
+  width: 100%;
+}
+
+.weather-card {
+  background-color: var(--card-background);
+  border-radius: 10px;
+  padding: 25px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: center;
+  border: 1px solid var(--border-color);
+}
+
+/* Tarjeta Principal de Temperatura */
+.primary-card {
+  grid-column: span 1; /* Ocupa una columna */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.primary-card .card-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.primary-card h2 {
+  margin: 0 0 5px 0;
+  font-size: 1.8em;
+  color: var(--primary-color);
+}
+
+.weather-icon {
+  width: 100px;
+  height: 100px;
+  object-fit: contain; /* Asegura que la imagen se ajuste bien */
+}
+
+.main-temp {
+  font-size: 4em; /* Temperatura principal grande */
+  font-weight: 700;
+  color: var(--text-color-light);
+  margin: 10px 0;
+  line-height: 1; /* Reduce el espacio de línea */
+}
+
+.description {
+  font-size: 1.3em;
+  text-transform: capitalize; /* Capitaliza la primera letra de la descripción */
+  color: var(--text-color-light);
+  margin-bottom: 5px;
+}
+
+.feels-like {
+  font-size: 1em;
+  color: var(--text-color-dark);
+}
+
+/* Tarjeta de Detalles Adicionales */
+.detail-card {
+  text-align: left;
+}
+
+.detail-card h3 {
+  margin-top: 0;
+  margin-bottom: 20px;
+  font-size: 1.5em;
+  color: var(--primary-color);
+  text-align: center;
+}
+
+.detail-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Dos columnas para los detalles */
+  gap: 15px 20px; /* Espacio entre filas y columnas */
+}
+
+.detail-item {
+  display: flex;
+  flex-direction: column;
+  background-color: #4a4f58;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #5a5f68;
+}
+
+.detail-item span {
+  font-size: 0.9em;
+  color: var(--text-color-dark);
+  margin-bottom: 5px;
+}
+
+.detail-item strong {
+  font-size: 1.1em;
+  color: var(--text-color-light);
+  font-weight: 600;
+}
+
+/* --- Loading Spinner --- */
+.loading-spinner {
+  border: 6px solid var(--border-color);
+  border-top: 6px solid var(--primary-color);
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 1s linear infinite;
+  margin: 50px auto;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* --- Media Queries para Responsividad --- */
+@media (min-width: 768px) {
+  .dashboard-header {
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 25px 40px;
+  }
+
+  .dashboard-header h1 {
+    font-size: 3em;
+  }
+
+  .search-form {
+    max-width: 600px;
+  }
+
+  .weather-dashboard-cards {
+    grid-template-columns: repeat(2, 1fr); /* Dos columnas en pantallas medianas */
+  }
+}
+
+@media (min-width: 1024px) {
+  .weather-dashboard-cards {
+    grid-template-columns: 1.5fr 1fr; /* La tarjeta principal puede ser un poco más ancha */
+  }
+}
+
+@media (max-width: 480px) {
+  .dashboard-header h1 {
+    font-size: 2em;
+  }
+
+  .search-form {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .city-input, .search-button {
+    width: 100%;
+    border-radius: 8px;
+  }
+
+  .main-temp {
+    font-size: 3.5em;
+  }
+
+  .detail-grid {
+    grid-template-columns: 1fr; /* Una columna en pantallas pequeñas */
+  }
+}
